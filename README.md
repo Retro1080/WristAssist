@@ -32,3 +32,4 @@ WristAssist is under the terms of the [Apapche 2.0 license](https://www.apache.o
 ## Fork stuff
 this fork only adds removes and changes some very minor things, as i see fit  
 you're welcome to use it i guess but i'm new to android and not a java guy, so like 90% of *my* commits are vibecoded in either Antigravity or OpenCode
+i am not responsible if this app declares nuclear war or turns your watch into a bf0 webtv  
