@@ -20,7 +20,7 @@ import android.widget.Toast;
 import androidx.core.content.ContextCompat;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.firebase.crashlytics.FirebaseCrashlytics;
+
 import com.theokanning.openai.Usage;
 import com.theokanning.openai.client.OpenAiApi;
 import com.theokanning.openai.completion.chat.ChatCompletionRequest;
@@ -315,10 +315,7 @@ public class ChatActivity extends Activity {
                     }
                 });
             } catch (RuntimeException e) {
-                FirebaseCrashlytics fc = FirebaseCrashlytics.getInstance();
-                fc.setCustomKey("settings", sp.getAll().toString());
-                fc.setUserId(sp.getString("net.devemperor.wristassist.userid", "null"));
-                fc.recordException(e);
+
 
                 runOnUiThread(() -> {
                     if (sp.getBoolean("net.devemperor.wristassist.vibrate", true)) {

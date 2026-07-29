@@ -23,7 +23,7 @@ import androidx.appcompat.content.res.AppCompatResources;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
-import com.google.firebase.crashlytics.FirebaseCrashlytics;
+
 import com.theokanning.openai.audio.CreateTranscriptionRequest;
 import com.theokanning.openai.audio.TranscriptionResult;
 import com.theokanning.openai.client.OpenAiApi;
@@ -210,8 +210,9 @@ public class InputWhisperActivity extends AppCompatActivity {
         errorIv2.setVisibility(View.GONE);
 
         String apiKey = sp.getString("net.devemperor.wristassist.api_key", "noApiKey");
+        String apiHost = sp.getString("net.devemperor.wristassist.custom_server_host", "https://api.openai.com/");
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.openai.com/")
+                .baseUrl(apiHost)
                 .client(defaultClient(apiKey.replaceAll("[^ -~]", ""), Duration.ofSeconds(120)).newBuilder().build())
                 .addConverterFactory(JacksonConverterFactory.create(defaultObjectMapper()))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -236,10 +237,7 @@ public class InputWhisperActivity extends AppCompatActivity {
 
             } catch (RuntimeException e) {
                 if (!(e.getCause() instanceof InterruptedIOException)) {
-                    FirebaseCrashlytics fc = FirebaseCrashlytics.getInstance();
-                    fc.setCustomKey("settings", sp.getAll().toString());
-                    fc.setUserId(sp.getString("net.devemperor.wristassist.userid", "null"));
-                    fc.recordException(e);
+
 
                     showError();
                 }

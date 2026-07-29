@@ -21,7 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.firebase.crashlytics.FirebaseCrashlytics;
+
 import com.jsibbold.zoomage.ZoomageView;
 import com.theokanning.openai.client.OpenAiApi;
 import com.theokanning.openai.image.CreateImageRequest;
@@ -201,10 +201,7 @@ public class CreateImageActivity extends AppCompatActivity {
                     });
                 }
             } catch (RuntimeException | IOException e) {
-                FirebaseCrashlytics fc = FirebaseCrashlytics.getInstance();
-                fc.setCustomKey("settings", sp.getAll().toString());
-                fc.setUserId(sp.getString("net.devemperor.wristassist.userid", "null"));
-                fc.recordException(e);
+
 
                 runOnUiThread(() -> {
                     imagePb.setVisibility(View.GONE);

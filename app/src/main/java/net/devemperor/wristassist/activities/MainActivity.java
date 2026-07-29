@@ -13,7 +13,7 @@ import androidx.core.splashscreen.SplashScreen;
 import androidx.wear.widget.WearableLinearLayoutManager;
 import androidx.wear.widget.WearableRecyclerView;
 
-import com.google.firebase.crashlytics.FirebaseCrashlytics;
+
 
 import net.devemperor.wristassist.BuildConfig;
 import net.devemperor.wristassist.R;
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
             Random random = new Random();
             sp.edit().putString("net.devemperor.wristassist.userid", String.valueOf(random.nextInt(999999999 - 100000000) + 100000000)).apply();
         }
-        FirebaseCrashlytics.getInstance().setUserId(sp.getString("net.devemperor.wristassist.userid", "null"));
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);

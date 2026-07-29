@@ -30,7 +30,7 @@ public class UsageDatabaseHelper extends SQLiteOpenHelper {
 
     public void edit(String model, long tokensToAdd, double costToAdd) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM USAGE WHERE MODEL_NAME='" + model + "'", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM USAGE WHERE MODEL_NAME=?", new String[]{model});
 
         boolean entryExists = cursor.moveToFirst();
         cursor.close();
@@ -42,14 +42,14 @@ public class UsageDatabaseHelper extends SQLiteOpenHelper {
             cv.put("COST", costToAdd);
             db.insert("USAGE", null, cv);
         } else {
-            cursor = db.rawQuery("SELECT * FROM USAGE WHERE MODEL_NAME='" + model + "'", null);
+            cursor = db.rawQuery("SELECT * FROM USAGE WHERE MODEL_NAME=?", new String[]{model});
             if (cursor.moveToFirst()) {
                 long lastTokens = cursor.getLong(1);
                 double lastCost = cursor.getDouble(2);
                 ContentValues cv = new ContentValues();
                 cv.put("TOKENS", lastTokens + tokensToAdd);
                 cv.put("COST", lastCost + costToAdd);
-                db.update("USAGE", cv, "MODEL_NAME='" + model + "'", null);
+                db.update("USAGE", cv, "MODEL_NAME=?", new String[]{model});
             }
             cursor.close();
         }

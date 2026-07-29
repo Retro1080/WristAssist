@@ -43,6 +43,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                 String model = result.getData().getStringExtra("net.devemperor.wristassist.input.content2");
                 if (host != null && model != null) {
                     if (new UrlValidator().isValid(host)) {
+                        if (!host.endsWith("/")) host += "/";
                         sp.edit().putString("net.devemperor.wristassist.custom_server_host", host).apply();
                         sp.edit().putString("net.devemperor.wristassist.custom_server_model", model).apply();
                         chatModelPreference.setEnabled(false);
