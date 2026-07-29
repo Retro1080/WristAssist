@@ -30,5 +30,5 @@ You will find a detailed explaination on how to set up and use WristAssist on th
 WristAssist is under the terms of the [Apapche 2.0 license](https://www.apache.org/licenses/LICENSE-2.0), following all clarifications stated in the [license file](https://raw.githubusercontent.com/DevEmperor/WristAssist/master/LICENSE)
 
 ## Fork stuff
-this fork only adds removes and changes some very minor things, as i see fit
+this fork only adds removes and changes some very minor things, as i see fit  
 you're welcome to use it i guess but i'm new to android and not a java guy, so like 90% of *my* commits are vibecoded in either Antigravity or OpenCode
